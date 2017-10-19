@@ -36,9 +36,15 @@ class FakePeripheral: RxPeripheralType {
     var services: [RxServiceType]?
     var identifier: UUID = UUID()
     var maximumWriteValueLength = 0
+    var canSendWriteWithoutResponse = false
 
     var peripheral: CBPeripheral {
         fatalError("Peripheral not available")
+    }
+
+    @available(OSX 10.13, iOS 11.0, *)
+    var canSendWriteWithoutResponse: Bool {
+        return canSendWriteWithoutResponse
     }
 
     var RSSI: Int?

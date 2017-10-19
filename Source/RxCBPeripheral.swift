@@ -47,6 +47,11 @@ class RxCBPeripheral: RxPeripheralType {
         return UInt(bitPattern: ObjectIdentifier(peripheral))
     }
 
+    @available(OSX 10.13, iOS 11.0, *)
+    var canSendWriteWithoutResponse: Bool {
+        return peripheral.canSendWriteWithoutResponse
+    }
+
     var name: String? {
         return peripheral.name
     }

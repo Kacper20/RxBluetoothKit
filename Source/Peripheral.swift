@@ -81,6 +81,12 @@ public class Peripheral {
         return peripheral.objectId
     }
 
+    ///
+    @available(OSX 10.13, iOS 11.0, *)
+    var canSendWriteWithoutResponse: Bool {
+        return peripheral.canSendWriteWithoutResponse
+    }
+
     /// A list of services that have been discovered. Analogous to   [services](https://developer.apple.com/library/ios/documentation/CoreBluetooth/Reference/CBPeripheral_Class/#//apple_ref/occ/instp/CBPeripheral/services) of `CBPeripheral`.
     public var services: [Service]? {
         return peripheral.services?.map {

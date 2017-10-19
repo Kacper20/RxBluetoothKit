@@ -33,6 +33,9 @@ protocol RxPeripheralType {
     @available(*, deprecated)
     var objectId: UInt { get }
 
+    @available(OSX 10.13, iOS 11.0, *)
+    var canSendWriteWithoutResponse: Bool { get }
+
     var peripheral: CBPeripheral { get }
 
     var state: CBPeripheralState { get }
