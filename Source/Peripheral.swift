@@ -29,9 +29,9 @@ import CoreBluetooth
 /// Peripheral is a class implementing ReactiveX API which wraps all Core Bluetooth functions
 /// allowing to talk to peripheral like discovering characteristics, services and all of the read/write calls.
 public class Peripheral {
-    public let manager: BluetoothManager
+    public let manager: CentralManager
 
-    init(manager: BluetoothManager, peripheral: CBPeripheral) {
+    init(manager: CentralManager, peripheral: CBPeripheral) {
         self.manager = manager
         self.peripheral = peripheral
         peripheral.delegate = delegateWrapper
@@ -86,8 +86,8 @@ public class Peripheral {
     }
 
     /// Establishes local connection to the peripheral.
-    /// For more information look into `BluetoothManager.connectToPeripheral(_:options:)` because this method calls it directly.
-    /// - Parameter peripheral: The `Peripheral` to which `BluetoothManager` is attempting to connect.
+    /// For more information look into `CentralManager.connectToPeripheral(_:options:)` because this method calls it directly.
+    /// - Parameter peripheral: The `Peripheral` to which `CentralManager` is attempting to connect.
     /// - Parameter options: Dictionary to customise the behaviour of connection.
     /// - Returns: `Observable` which emits next event after connection is established
     public func connect(options: [String: AnyObject]? = nil) -> Single<Peripheral> {
