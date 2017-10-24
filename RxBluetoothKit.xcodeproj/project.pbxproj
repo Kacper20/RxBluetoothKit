@@ -187,7 +187,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		265CD5F91CBED2E4007120AB /* BluetoothManager */ = {
+		265CD5F91CBED2E4007120AB /* CentralManager */ = {
 			isa = PBXGroup;
 			children = (
 				A1299C221CBE3DEE005DEA5B /* ScanOperation.swift */,
@@ -197,7 +197,7 @@
 				26EF38C81D86EE1F00F9F468 /* BluetoothState.swift */,
 				BB2FF3341F9EAF2B00A12E10 /* CBCentralManagerDelegateWrapper.swift */,
 			);
-			name = BluetoothManager;
+			name = CentralManager;
 			sourceTree = "<group>";
 		};
 		265CD5FA1CBED323007120AB /* Shared */ = {
@@ -361,7 +361,7 @@
 				265CD5FC1CBED339007120AB /* Service */,
 				265CD5FB1CBED333007120AB /* Characteristic */,
 				265CD5FA1CBED323007120AB /* Shared */,
-				265CD5F91CBED2E4007120AB /* BluetoothManager */,
+				265CD5F91CBED2E4007120AB /* CentralManager */,
 			);
 			path = Source;
 			sourceTree = "<group>";
