@@ -111,9 +111,9 @@ public class Peripheral {
     /// - Returns: `Single` that emits `Next` with array of `Service` instances, once they're discovered.
     public func discoverServices(_ serviceUUIDs: [CBUUID]?) -> Single<[Service]> {
         if let identifiers = serviceUUIDs, !identifiers.isEmpty,
-           let cachedServices = self.services,
-           let filteredServices = filterUUIDItems(uuids: serviceUUIDs, items: cachedServices) {
-           return ensureValidPeripheralState(for: .just(filteredServices)).asSingle()
+            let cachedServices = self.services,
+            let filteredServices = filterUUIDItems(uuids: serviceUUIDs, items: cachedServices) {
+            return ensureValidPeripheralState(for: .just(filteredServices)).asSingle()
         }
         let observable = delegateWrapper.rx_didDiscoverServices
             .flatMap { [weak self] (_, error) -> Observable<[Service]> in
@@ -292,7 +292,7 @@ public class Peripheral {
     /// - Parameter characteristic: `Characteristic` to read value from
     /// - Returns: `Single` which emits `Next` with given characteristic when value is ready to read.
     public func readValue(for characteristic: Characteristic) -> Single<Characteristic> {
-        let observable = self.monitorValueUpdate(for: characteristic).take(1)
+        let observable = monitorValueUpdate(for: characteristic).take(1)
         return ensureValidPeripheralStateAndCallIfSucceeded(
             for: observable,
             postSubscriptionCall: { [weak self] in
@@ -335,17 +335,17 @@ public class Peripheral {
     /// This is **infinite** stream of values.
     public func setNotificationAndMonitorUpdates(for characteristic: Characteristic)
         -> Observable<Characteristic> {
-            return Observable
-                .of(
-                    monitorValueUpdate(for: characteristic),
-                    setNotifyValue(true, for: characteristic)
-                        .asObservable()
-                        .ignoreElements()
-                        .asObservable()
-                        .map { _ in characteristic }
-                        .subscribeOn(CurrentThreadScheduler.instance)
-                )
-                .merge()
+        return Observable
+            .of(
+                monitorValueUpdate(for: characteristic),
+                setNotifyValue(true, for: characteristic)
+                    .asObservable()
+                    .ignoreElements()
+                    .asObservable()
+                    .map { _ in characteristic }
+                    .subscribeOn(CurrentThreadScheduler.instance)
+            )
+            .merge()
     }
 
     // MARK: Descriptors
@@ -416,7 +416,7 @@ public class Peripheral {
     /// - Parameter descriptor: `Descriptor` to read value from
     /// - Returns: `Single` which emits `Next` with given descriptor when value is ready to read.
     public func readValue(for descriptor: Descriptor) -> Single<Descriptor> {
-        let observable = self.monitorValueUpdate(for: descriptor).take(1)
+        let observable = monitorValueUpdate(for: descriptor).take(1)
         return ensureValidPeripheralStateAndCallIfSucceeded(
             for: observable,
             postSubscriptionCall: { [weak self] in
