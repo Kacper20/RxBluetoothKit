@@ -47,8 +47,8 @@ public class PeripheralManager {
     /// - parameter options: An optional dictionary containing initialization options for a central manager.
     /// For more info about it please refer to [Peripheral Manager initialization options](https://developer.apple.com/library/ios/documentation/CoreBluetooth/Reference/CBPeripheralManager_Class/index.html)
     public convenience init(queue: DispatchQueue = .main,
-                            options: [String: AnyObject]? = nil) {
-        self.init(centralManager: CBPeripheralManager(delegate: nil, queue: queue, options: options),
+                            options: [String: Any]? = nil) {
+        self.init(peripheralManager: CBPeripheralManager(delegate: nil, queue: queue, options: options),
                   queueScheduler: ConcurrentDispatchQueueScheduler(queue: queue))
     }
 }
