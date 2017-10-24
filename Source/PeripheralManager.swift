@@ -30,6 +30,18 @@ public class PeripheralManager {
 
     private let delegateWrapper = CBPeripheralManagerDelegateWrapper()
 
+    /// IndicatesWhether or not the peripheral is currently advertising data.
+    public var isAdvertising: Bool {
+        return peripheralManager.isAdvertising
+    }
+
+    /// This method does not prompt the user for access.
+    /// You can use it to detect restricted access and simply hide UI instead of prompting for access.
+    /// - returns: The current authorization status for sharing data while backgrounded.
+    public class func authorizationStatus() -> CBPeripheralManagerAuthorizationStatus {
+        return CBPeripheralManager.authorizationStatus()
+    }
+
     // MARK: Initialization
 
     /// Creates new `PeripheralManager`
